@@ -30,7 +30,7 @@ const ManageServices = () => {
         }).then((result) => {
           if (result.isConfirmed) {
       
-            fetch(`http://localhost:5000/manageServices/${id}`, {
+            fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
               method: 'DELETE'
             })
             .then(res => res.json())
@@ -54,7 +54,7 @@ const ManageServices = () => {
 
        // send data to the server
   const handlemanageServicesConfirm = id =>{
-    fetch(`http://localhost:5000/manageServices/${id}`, {
+    fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
     method: 'PATCH',
     headers: {
       'content-type': 'application/json'

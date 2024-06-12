@@ -37,7 +37,7 @@ const AddServices = () => {
 
 
       // send data to the server
-      fetch('http://localhost:5000/manageServices', {
+      fetch('https://consultation-services-by-doctors-server.vercel.app/manageServices', {
         method: 'POST',
         headers: {
           'content-type' : 'application/json'

@@ -22,7 +22,7 @@ const Login = () => {
       console.log(result.user);
       const user = { email };
 
-      axios.post('http://localhost:5000/jwt', user)
+      axios.post('https://consultation-services-by-doctors-server.vercel.app/jwt', user)
       .then(res => res.data)
     })
       .catch(error => {

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <AllServices></AllServices>,
-        loader: () => fetch('http://localhost:5000/allServices')
+        loader: () => fetch('https://consultation-services-by-doctors-server.vercel.app/allServices')
       },
       {
         path: "/services/:id",
@@ -34,12 +34,12 @@ const router = createBrowserRouter([
       {
         path: "/addServices/:id",
         element: <PrivateRoute><AddServices></AddServices></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/manageServices/${params.id}`)
+        loader: ({params}) => fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${params.id}`)
       },
       {
         path: "/updateServices/:id",
         element: <PrivateRoute><UpdateServices></UpdateServices></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/manageServices/${params.id}`)
+        loader: ({params}) => fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${params.id}`)
       },
       {
         path: "/manageService",
