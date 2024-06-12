@@ -1,0 +1,63 @@
+
+[
+  {
+    "service_id": "001",
+    "service_image": "https://i.ibb.co/k6nGMTq/images-3.jpg",
+    "service_name": "General Checkup",
+    "service_description": "Comprehensive general health checkup.",
+    "service_provider_image": "https://i.ibb.co/djrYGPv/john-smith.webp",
+    "service_provider_name": "Dr. John Smith",
+    "service_area": "New York, NY",
+    "service_price": "$200"
+  },
+  {
+    "service_id": "002",
+    "service_image": "https://i.ibb.co/N36pkYM/01.jpg",
+    "service_name": "Dental Cleaning",
+    "service_description": "Professional dental cleaning and checkup.",
+    "service_provider_image": "https://i.ibb.co/sPTS7Lh/jane-doe.jpg",
+    "service_provider_name": "Dr. Jane Doe",
+    "service_area": "Los Angeles, CA",
+    "service_price": "$150"
+  },
+  {
+    "service_id": "003",
+    "service_image": "https://i.ibb.co/xMgV3n3/Female-Doctor.jpg",
+    "service_name": "Cardiology Consultation",
+    "service_description": "Expert cardiology consultation and advice.",
+    "service_provider_image": "https://i.ibb.co/ZdtTnSb/images.jpg",
+    "service_provider_name": "Dr. Emily Johnson",
+    "service_area": "Chicago, IL",
+    "service_price": "$250"
+  },
+  {
+    "service_id": "004",
+    "service_image": "https://i.ibb.co/KjNJC93/images-1.jpg",
+    "service_name": "Pediatric Care",
+    "service_description": "Comprehensive care for your child's health.",
+    "service_provider_image": "https://i.ibb.co/fGjgKBs/brown-michael.png",
+    "service_provider_name": "Dr. Michael Brown",
+    "service_area": "Houston, TX",
+    "service_price": "$180"
+  },
+  {
+    "service_id": "005",
+    "service_image": "https://i.ibb.co/Vq2Zk9v/orthopaedics.jpg",
+    "service_name": "Orthopedic Consultation",
+    "service_description": "Specialized orthopedic consultation.",
+    "service_provider_image": "https://i.ibb.co/vZC8w9S/davis-william.jpg",
+    "service_provider_name": "Dr. William Davis",
+    "service_area": "Phoenix, AZ",
+    "service_price": "$220"
+  },
+  {
+    "service_id": "006",
+    "service_image": "https://i.ibb.co/tJJTvnN/images-2.jpg",
+    "service_name": "Dermatology Consultation",
+    "service_description": "Expert dermatology consultation for skin health.",
+    "service_provider_image": "https://i.ibb.co/9NZHgmf/2.jpg",
+    "service_provider_name": "Dr. Sophia Martinez",
+    "service_area": "Philadelphia, PA",
+    "service_price": "$190"
+  }
+]
