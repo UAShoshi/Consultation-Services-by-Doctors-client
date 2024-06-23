@@ -114,7 +114,7 @@ const ManageServices = () => {
                   </div></div></td>
                   <td>{manageService.serviceName}</td>
                   <td>${manageService.price}</td>
-                  {/* <td>{manageService.providerName}</td> */}
+                  <td>{manageService.providerName}</td>
                   <td>
                     {
                     manageService.status === 'pending' ? <span className="font-bold text-green-500 border border-green-500 rounded-lg p-3">Approved</span>:
