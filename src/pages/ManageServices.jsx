@@ -30,7 +30,7 @@ const ManageServices = () => {
         }).then((result) => {
           if (result.isConfirmed) {
       
-            fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
+            fetch(`https://consultation-services-by-doctors-server.vercel.app//manageServices/${id}`, {
               method: 'DELETE'
             })
             .then(res => res.json())
@@ -114,7 +114,7 @@ const ManageServices = () => {
                   </div></div></td>
                   <td>{manageService.serviceName}</td>
                   <td>${manageService.price}</td>
-                  <td>{manageService.providerName}</td>
+                  {/* <td>{manageService.providerName}</td> */}
                   <td>
                     {
                     manageService.status === 'pending' ? <span className="font-bold text-green-500 border border-green-500 rounded-lg p-3">Approved</span>:

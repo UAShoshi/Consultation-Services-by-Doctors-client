@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { service_id, user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState("light");
 
 
@@ -46,10 +46,10 @@ const Navbar = () => {
           <li>
         <details>
           <summary>
-          <NavLink to="/dashboard">Dashboard</NavLink>
+          <a>Dashboard</a>
           </summary>
-          <ul className="p-2 bg-base-100 rounded-t-none">
-            <li><NavLink to="/addServices">Add Services</NavLink></li>
+          <ul className="p-2 bg-base-100 rounded-t-none z-10">
+            <li><NavLink to={`/addServices`}>Add Services</NavLink></li>
             <li><NavLink to="/manageService">Manage Service</NavLink></li>
             <li><NavLink to="/bookedServices">Booked-Services</NavLink></li>
             <li><NavLink to="/serviceToDo">Service-To-Do</NavLink></li>
