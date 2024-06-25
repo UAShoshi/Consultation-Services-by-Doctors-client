@@ -34,9 +34,8 @@ const router = createBrowserRouter([
         element: <PrivateRoute><ServicesDetail></ServicesDetail></PrivateRoute>
       },
       {
-        path: "/addServices/:id",
+        path: "/addServices",
         element: <PrivateRoute><AddServices></AddServices></PrivateRoute>,
-        loader: ({params}) => fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${params.id}`)
       },
       {
         path: "/updateServices/:id",

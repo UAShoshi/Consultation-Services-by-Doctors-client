@@ -23,7 +23,7 @@ const ServicesDetail = () => {
     <div>
     <img src="" alt="" />
     </div>
-    <p className="flex-1"><span className="font-bold">:</span> {}</p>
+    <p className="flex-1"><span className="font-bold"></span> {}</p>
     </div>
   );
 };

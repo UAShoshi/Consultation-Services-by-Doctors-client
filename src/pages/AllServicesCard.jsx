@@ -18,7 +18,7 @@ const AllServicesCard = ({services}) => {
       </div>
       <div className="card-actions justify-center">
       <Link to={`/services/${service_id}`}><button className="btn btn-info font-bold">View Detail</button></Link>
-      <Link to={`/addServices/${service_id}`}>
+      <Link to={`/addServices`}>
     <button className="btn btn-info font-bold">Add Services</button>
     </Link>
       </div>

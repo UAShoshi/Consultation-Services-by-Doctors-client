@@ -1,12 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
 
 
 const AddServices = () => {
-  const service = useLoaderData();
-  const { _id, providerName, imgURL } = service;
 
   const { user } = useContext(AuthContext);
 
@@ -16,11 +13,11 @@ const AddServices = () => {
     const form = event.target;
     const serviceName = form.serviceName.value;
     const email = user?.email;
-    // const providerName = user?.providerName;
+    const providerName = user?.providerName;
     const providerImage = user?.providerImage;
     const serviceArea = form.serviceArea.value;
     const price = form.price.value;
-    // const imgURL = form.imgURL.value;
+    const imgURL = form.imgURL.value;
     const description = form.description.value;
 
     const newServices = {
@@ -29,7 +26,6 @@ const AddServices = () => {
       providerName,
       providerImage,
       serviceArea,
-      service_id: _id,
       price,
       service_image: imgURL,
       description

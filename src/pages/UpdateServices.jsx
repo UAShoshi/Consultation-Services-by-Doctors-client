@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const UpdateServices = () => {
   const service = useLoaderData();
-  const {_id, providerName, serviceName, price, imgURL} = service;
+  const {id, providerName, serviceName, price, imgURL} = service;
 
   const {user} = useContext(AuthContext);
 
@@ -27,12 +28,33 @@ const UpdateServices = () => {
       service_provider_name: providerName, 
       providerImage, 
       serviceArea, 
-      service_id: _id,
       price, 
       service_image: imgURL, 
       description
     }
     console.log(updateServices);
+
+
+      // send data to the server
+      fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(updateServices)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: 'Good Luck !!!',
+            text: 'Card updated successfully',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+        }
+      })
   }
 
 
@@ -45,7 +67,7 @@ const UpdateServices = () => {
           <div className="label">
             <span className="label-text font-bold">Service Name</span>
           </div>
-          <input type="text" name="serviceName" placeholder="Service Name" className="input w-full" />
+          <input type="text" name="serviceName" defaultValue={user?.serviceName} placeholder="Service Name" className="input w-full" />
         </label>
         <label className="form-control md:w-1/2">
           <div className="label">
@@ -83,7 +105,7 @@ const UpdateServices = () => {
           <div className="label">
             <span className="label-text font-bold">Price</span>
           </div>
-          <input type="text" name="price" placeholder="Price" className="input w-full" />
+          <input type="text" name="price" defaultValue={user?.price} placeholder="Price" className="input w-full" />
         </label>
       </div>
       <div className="md:flex gap-3 mb-8">

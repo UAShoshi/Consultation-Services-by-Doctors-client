@@ -1,84 +1,84 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-// import { IoPencilOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { Link } from "react-router-dom";
+import { HiPencil } from "react-icons/hi";
 
 
 const ManageServices = () => {
-
   const { user } = useContext(AuthContext);
   const [manageServices, setManageServices] = useState([]);
 
-  const url = `/manageServices?email=${user?.email}`;
+  const url = `https://consultation-services-by-doctors-server.vercel.app/manageServices?email=${user.email}`;
   useEffect(() => {
-
-  fetch(url, {credentials: 'include'})
+    fetch(url)
       .then(res => res.json())
       .then(data => setManageServices(data))
   }, [url]);
 
-      const handleDelete = id =>{
-        // console.log(id);
+        const handleDelete = id =>{
+          console.log(id);
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+              fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
+                method: 'DELETE'
+              })
+              .then(res => res.json())
+              .then(data =>{
+                // console.log(data);
+                if (data.deletedCount > 0) {
+                  Swal.fire({
+                title: "Deleted!",
+                text: "Your Services has been deleted.",
+                icon: "success"
+              }); 
+              const remaining = manageServices.filter(user => user._id !== id);
+              setManageServices(remaining);        
+                }
+              })
+            }
+          });
+        }
+
+
+
+         // send data to the server
+    const handlemanageServicesConfirm = id =>{
+      fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({status: 'pending'})
+    })
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data);
+      if (data.modifiedCount > 0) {
         Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-          if (result.isConfirmed) {
-      
-            fetch(`https://consultation-services-by-doctors-server.vercel.app//manageServices/${id}`, {
-              method: 'DELETE'
-            })
-            .then(res => res.json())
-            .then(data =>{
-              // console.log(data);
-              if (data.deletedCount > 0) {
-                Swal.fire({
-              title: "Deleted!",
-              text: "Your Services has been deleted.",
-              icon: "success"
-            }); 
-            const remaining = manageServices.filter(user => user._id !== id);
-            setManageServices(remaining);        
-              }
-            })
-          }
-        });
+          title: 'Good Luck !!!',
+          text: 'Services updated successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        })
+        const remaining = manageServices.filter(user => user._id !== id);
+        const updated = manageServices.find(user => user._id === id);
+        updated.status = 'pending'
+        const newManageServices = [updated, ...remaining];
+        setManageServices(newManageServices);
       }
-
-
-
-       // send data to the server
-  const handlemanageServicesConfirm = id =>{
-    fetch(`https://consultation-services-by-doctors-server.vercel.app/manageServices/${id}`, {
-    method: 'PATCH',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({status: 'pending'})
-  })
-  .then(res => res.json())
-  .then(data => {
-    // console.log(data);
-    if (data.modifiedCount > 0) {
-      Swal.fire({
-        title: 'Good Luck !!!',
-        text: 'Services updated successfully',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      })
-      const remaining = manageServices.filter(user => user._id !== id);
-      const updated = manageServices.find(user => user._id === id);
-      updated.status = 'pending'
-      const newManageServices = [updated, ...remaining];
-      setManageServices(newManageServices);
-    }
-  });
-}
+    });
+  }
 
 
 
@@ -109,7 +109,7 @@ const ManageServices = () => {
                   </button></th>
                   <td><div className="avatar"><div className="w-24 rounded-xl">
                     {
-                    manageService.imgURL && <img src={manageService.imgURL} alt="Avatar Tailwind CSS Component" />
+                      manageService.imgURL && <img src={manageService.imgURL} alt="Avatar Tailwind CSS Component" />
                     }
                   </div></div></td>
                   <td>{manageService.serviceName}</td>
@@ -117,10 +117,15 @@ const ManageServices = () => {
                   <td>{manageService.providerName}</td>
                   <td>
                     {
-                    manageService.status === 'pending' ? <span className="font-bold text-green-500 border border-green-500 rounded-lg p-3">Approved</span>:
-                    <button onClick={() => handlemanageServicesConfirm(manageService._id)} className="btn btn-error text-white">pending</button>
+                      manageService.status === 'pending' ? <span className="font-bold text-green-500 border border-green-500 rounded-lg p-3">Approved</span> :
+                        <button onClick={() => handlemanageServicesConfirm(manageService._id)} className="btn btn-error text-white">pending</button>
                     }
-                    </td>
+                  </td>
+                  <td>
+                    {
+                       <Link to={`/updateServices/${manageService._id}`}><button className="btn bg-[#3C393B] text-white"><HiPencil className="text-white"></HiPencil></button></Link>
+                    }
+                  </td>
                 </tr>)
             }
 
