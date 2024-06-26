@@ -26,8 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/services",
-        element: <AllServices></AllServices>,
-        loader: () => fetch('https://consultation-services-by-doctors-server.vercel.app/allServices')
+        element: <AllServices></AllServices>
       },
       {
         path: "/services/:id",
